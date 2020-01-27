@@ -1,0 +1,12 @@
+#clickable1, #clickable2, #clickable3 {
+  cursor: pointer;
+  color: blue
+}
+
+#clickable1:hover, #clickable2:hover, #clickable3:hover {
+  text-decoration: underline;
+}
+
+ul ul {
+  display: none;
+}
