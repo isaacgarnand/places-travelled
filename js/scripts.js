@@ -16,6 +16,16 @@ PlacesTravelled.prototype.assignId = function () {
   return this.currentId;
 }
 
+PlacesTravelled.prototype.findPlace = function(id) {
+  for(var i=0; i<this.places.length; i++){
+    if(this.places[i]){
+      if(this.places[i].id  == id) {
+        return this.places[i];
+      }
+    }
+  };
+  return false;
+}
 
 // Logic for Location 
 function Location(location, landmark, time, notes) {
@@ -29,12 +39,6 @@ function Location(location, landmark, time, notes) {
 // User Interface Logic 
 var placesTravel = new PlacesTravelled();
 
-function listLocationDetails () {
-  $("li#" + currentId).on("click", function() {
-    $("li.T" + currentId).toggle();
-  });
-}
-
 function displayPlacesTravelled(informationToDisplay) {
   var placesList = $("ul#locations");
   var htmlForLocation = "";
@@ -44,7 +48,15 @@ function displayPlacesTravelled(informationToDisplay) {
   placesList.html(htmlForLocation);
 }
 
+function attachContactListeners() {
+  $("ul#locations").on("click", "li", function() {
+    $(this).show();
+  });
+};
+
+
 $(document).ready(function(){
+  attachContactListeners();
   $("form#form").submit(function(event){
     event.preventDefault();
     var location = $("input#place").val();
@@ -56,6 +68,10 @@ $(document).ready(function(){
     displayPlacesTravelled(placesTravel);
   });
 });
+
+
+
+
 
 
 
